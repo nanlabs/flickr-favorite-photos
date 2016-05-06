@@ -13,6 +13,7 @@ body {
     margin: 0 2px 2px 0;
     overflow: hidden;
     height: 160px;
+    position: relative;
 }
 
 .photo,
@@ -21,20 +22,19 @@ body {
     max-width: 240px;
 }
 
-.photo img:hover {
+.photo:hover img {
     opacity: 0.5
 }
 
-.photo i {
-    position: absolute;
-    /*top: 45%;*/
-    /*left: 45%;*/
-    transform: translate(-45%, -45%);
-    display: none;
+.photo:hover i {
+  display: block;
+  z-index: 500;
 }
 
-
-.photo:hover i {
-    display: block;
-    z-index: 500;
+.photo i {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-45%, -45%);
+  display: none;
 }

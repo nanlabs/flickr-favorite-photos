@@ -75,18 +75,16 @@ var setupPhotos = (function ($) {
         var holder = document.getElementById(id);
         return function (img) {
           var elm = document.createElement('div');
-          var divIconContainer = document.createElement('div');
           var icon = document.createElement('i');
           if (localStorage.getItem(img.src)) {
             icon.className = 'fa fa-heart fa-5x';
           }else{
             icon.className = 'fa fa-heart-o fa-5x';
           }
-          divIconContainer.addEventListener('click', function(event) {
+          icon.addEventListener('click', function(event) {
             updateFav(event.target,img);
           });
-          divIconContainer.appendChild(icon);
-          elm.appendChild(divIconContainer);
+          elm.appendChild(icon);
           elm.className = 'photo';
           elm.appendChild(img);
           holder.appendChild(elm);
