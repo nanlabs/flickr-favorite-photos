@@ -61,15 +61,32 @@ var setupPhotos = (function ($) {
         return img;
     }
 
+    function updateFav(icon,img) {
+      if (localStorage.getItem(img.src)) {
+        localStorage.removeItem(img.src)
+        icon.className = 'fa fa-heart-o';
+      }else{
+        localStorage.setItem(img.src,'fav');
+        icon.className = 'fa fa-heart';
+      }
+    };
+
     function imageAppender (id) {
         var holder = document.getElementById(id);
         return function (img) {
           var elm = document.createElement('div');
-          var iconContainer = document.createElement('div');
+          var divIconContainer = document.createElement('div');
           var icon = document.createElement('i');
-          icon.className = 'fa fa-heart-o';
-          iconContainer.appendChild(icon);
-          elm.appendChild(iconContainer);
+          if (localStorage.getItem(img.src)) {
+            icon.className = 'fa fa-heart';
+          }else{
+            icon.className = 'fa fa-heart-o';
+          }
+          divIconContainer.addEventListener('click', function(event) {
+            updateFav(event.target,img);
+          });
+          divIconContainer.appendChild(icon);
+          elm.appendChild(divIconContainer);
           elm.className = 'photo';
           elm.appendChild(img);
           holder.appendChild(elm);
