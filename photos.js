@@ -61,18 +61,38 @@ var setupPhotos = (function ($) {
         return img;
     }
 
+    function updateFav(icon,img) {
+      if (localStorage.getItem(img.src)) {
+        localStorage.removeItem(img.src)
+        icon.className = 'fa fa-heart-o fa-5x';
+      }else{
+        localStorage.setItem(img.src,'fav');
+        icon.className = 'fa fa-heart fa-5x';
+      }
+    };
+
     function imageAppender (id) {
         var holder = document.getElementById(id);
         return function (img) {
-            var elm = document.createElement('div');
-            elm.className = 'photo';
-            elm.appendChild(img);
-            holder.appendChild(elm);
+          var elm = document.createElement('div');
+          var icon = document.createElement('i');
+          if (localStorage.getItem(img.src)) {
+            icon.className = 'fa fa-heart fa-5x';
+          }else{
+            icon.className = 'fa fa-heart-o fa-5x';
+          }
+          icon.addEventListener('click', function(event) {
+            updateFav(event.target,img);
+          });
+          elm.appendChild(icon);
+          elm.className = 'photo';
+          elm.appendChild(img);
+          holder.appendChild(elm);
         };
     }
 
     // ----
-    
+
     var max_per_tag = 5;
     return function setup (tags, callback) {
         loadAllPhotos(tags, max_per_tag, function (err, items) {
