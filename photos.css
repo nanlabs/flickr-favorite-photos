@@ -20,3 +20,21 @@ body {
     min-width: 160px;
     max-width: 240px;
 }
+
+.photo img:hover {
+    opacity: 0.5
+}
+
+.photo i {
+    position: absolute;
+    /*top: 45%;*/
+    /*left: 45%;*/
+    transform: translate(-45%, -45%);
+    display: none;
+}
+
+
+.photo:hover i {
+    display: block;
+    z-index: 500;
+}

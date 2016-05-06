@@ -64,10 +64,10 @@ var setupPhotos = (function ($) {
     function updateFav(icon,img) {
       if (localStorage.getItem(img.src)) {
         localStorage.removeItem(img.src)
-        icon.className = 'fa fa-heart-o';
+        icon.className = 'fa fa-heart-o fa-5x';
       }else{
         localStorage.setItem(img.src,'fav');
-        icon.className = 'fa fa-heart';
+        icon.className = 'fa fa-heart fa-5x';
       }
     };
 
@@ -78,9 +78,9 @@ var setupPhotos = (function ($) {
           var divIconContainer = document.createElement('div');
           var icon = document.createElement('i');
           if (localStorage.getItem(img.src)) {
-            icon.className = 'fa fa-heart';
+            icon.className = 'fa fa-heart fa-5x';
           }else{
-            icon.className = 'fa fa-heart-o';
+            icon.className = 'fa fa-heart-o fa-5x';
           }
           divIconContainer.addEventListener('click', function(event) {
             updateFav(event.target,img);
