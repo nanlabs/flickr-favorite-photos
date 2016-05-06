@@ -64,15 +64,20 @@ var setupPhotos = (function ($) {
     function imageAppender (id) {
         var holder = document.getElementById(id);
         return function (img) {
-            var elm = document.createElement('div');
-            elm.className = 'photo';
-            elm.appendChild(img);
-            holder.appendChild(elm);
+          var elm = document.createElement('div');
+          var iconContainer = document.createElement('div');
+          var icon = document.createElement('i');
+          icon.className = 'fa fa-heart-o';
+          iconContainer.appendChild(icon);
+          elm.appendChild(iconContainer);
+          elm.className = 'photo';
+          elm.appendChild(img);
+          holder.appendChild(elm);
         };
     }
 
     // ----
-    
+
     var max_per_tag = 5;
     return function setup (tags, callback) {
         loadAllPhotos(tags, max_per_tag, function (err, items) {
